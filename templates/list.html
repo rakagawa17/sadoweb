@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block title %}佐渡豆知識{% endblock %}
+
+
+{% block content %}
+<div class="container my-3">
+    <h2>佐渡豆知識</h2>
+
+    <form action="{% url 'sadosma:list' %}" method="GET" class="w-75">
+        <p><input type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力"></p>
+        <p>
+            地理 <input type="radio" class="form-check-input me-2" name="category" value="地理" {% if geography %}checked{% endif %}>
+            歴史 <input type="radio" class="form-check-input me-2" name="category" value="歴史" {% if history %}checked{% endif %}>
+            人物 <input type="radio" class="form-check-input me-2" name="category" value="人物" {% if person %}checked{% endif %}>
+            自然 <input type="radio" class="form-check-input me-2" name="category" value="自然" {% if nature %}checked{% endif %}>
+            伝統 <input type="radio" class="form-check-input me-2" name="category" value="伝統" {% if tradition %}checked{% endif %}>
+            スポーツ <input type="radio" class="form-check-input me-2" name="category" value="スポーツ" {% if sport %}checked{% endif %}>
+            食文化 <input type="radio" class="form-check-input me-2" name="category" value="食文化" {% if food %}checked{% endif %}>
+            文化 <input type="radio" class="form-check-input me-2" name="category" value="文化" {% if culture %}checked{% endif %}>
+            芸能 <input type="radio" class="form-check-input me-2" name="category" value="芸能" {% if entertainment %}checked{% endif %}>
+            特産品 <input type="radio" class="form-check-input me-2" name="category" value="特産品" {% if goods %}checked{% endif %}>
+            方言 <input type="radio" class="form-check-input me-2" name="category" value="方言" {% if dialect %}checked{% endif %}>
+        </p>
+        <p>
+            日本語 <input type="radio" class="form-check-input me-3" name="lang" value="1" {% if japanese %}checked{% endif %}>
+            英語 <input type="radio" class="form-check-input me-3" name="lang" value="2" {% if english %}checked{% endif %}>
+            中国語(簡体字) <input type="radio" class="form-check-input me-3" name="lang" value="3" {% if chinese1 %}checked{% endif %}>
+            中国語(繁体字) <input type="radio" class="form-check-input me-3" name="lang" value="4" {% if chinese2 %}checked{% endif %}>
+            韓国語 <input type="radio" class="form-check-input me-3" name="lang" value="5" {% if korean %}checked{% endif %}>
+            モンゴル語 <input type="radio" class="form-check-input me-3" name="lang" value="6" {% if mongolian %}checked{% endif %}>
+        </p>
+        <p><input type="submit" class="btn btn-secondary" value="検索"></p>
+    </form>
+
+    {% for object in object_list %}
+        <div class="card my-3">
+            <div class="card-body">
+                {% if japanese %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=1">{{object.japanese}}</a>{% else %}{{object.japanese}}{% endif %}</h5>
+                {% elif english %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=2">{{object.english}}</a>{% else %}{{object.english}}{% endif %}</h5>
+                {% elif chinese1 %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=3">{{object.chinese1}}</a>{% else %}{{object.chinese1}}{% endif %}</h5>
+                {% elif chinese2 %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=4">{{object.chinese2}}</a>{% else %}{{object.chinese2}}{% endif %}</h5>
+                {% elif korean %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=5">{{object.korean}}</a>{% else %}{{object.korean}}{% endif %}</h5>
+                {% elif mongolian %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=6">{{object.mongolian}}</a>{% else %}{{object.mongolian}}{% endif %}</h5>
+                {% else %}
+                    <h5 class="card-title">{{forloop.counter}}. {% if object.address %}<a href="{% url 'sadosma:detail' object.id %}?lang=1">{{object.japanese}}</a>{% else %}{{object.japanese}}{% endif %}</h5>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

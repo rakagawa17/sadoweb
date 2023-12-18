@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}詳細{% endblock %}
+
+{% block content %}
+<div class="container my-3">
+    <div class="card my-3">
+        <div class="card-body">
+            {% if japanese %}
+                <h5 class="card-title">{{ object.japanese }}</h5>
+            {% elif english %}
+                <h5 class="card-title">{{ object.english }}</h5>
+            {% elif chinese1 %}
+                <h5 class="card-title">{{ object.chinese1 }}</h5>
+            {% elif chinese2 %}
+                <h5 class="card-title">{{ object.chinese2 }}</h5>
+            {% elif korean %}
+                <h5 class="card-title">{{ object.korean }}</h5>
+            {% elif mongolian %}
+                <h5 class="card-title">{{ object.mongolian }}</h5>
+            {% endif %}
+                <p class="card-text">{{ object.category }}</p>
+            
+            {% if object.address %}
+                <iframe src="{{ object.address }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {% endif %}
+
+                <p class="card-text">{{ object.url1|urlize }}</p>
+            {% if object.url2 %}
+                <p class="card-text">{{ object.url2|urlize }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
