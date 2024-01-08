@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 
-{% block title %}佐渡豆知識{% endblock %}
+{% block title %}サドリビア{% endblock %}
 
 
 {% block content %}
 <div class="container my-3">
-    <h2>佐渡豆知識</h2>
+    <h2>サドリビア</h2>
 
     <form action="{% url 'sadosma:list' %}" method="GET" class="w-75">
         <p><input type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="キーワード入力"></p>
