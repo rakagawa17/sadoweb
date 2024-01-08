@@ -9,9 +9,25 @@ class TriviaList(ListView):
         query = super().get_queryset()
         keyword = self.request.GET.get('keyword', None)
         category = self.request.GET.get('category', None)
+        language = self.request.GET.get('lang', None)
+
         if keyword:
-            query = query.filter(japanese__icontains=keyword)
-        if category:
+            if language=='1':
+                query = query.filter(japanese__icontains=keyword)
+            elif language=='2':
+                query = query.filter(english__icontains=keyword)
+            elif language=='3':
+                query = query.filter(chinese1__icontains=keyword)
+            elif language=='4':
+                query = query.filter(chinese2__icontains=keyword)
+            elif language=='5':
+                query = query.filter(korean__icontains=keyword)
+            elif language=='6':
+                query = query.filter(mongolian__icontains=keyword)
+
+        if category=='未選択':
+            pass
+        elif category:
             query = query.filter(category=category)
         return query
     
@@ -55,6 +71,8 @@ class TriviaList(ListView):
             context['goods'] = True
         elif category == '方言':
             context['dialect'] = True
+        elif category == '未選択':
+            context['none'] = True
 
         return context
     
