@@ -7,4 +7,4 @@ sadosma/migrations/__pycache__
 *.pyc
 *~
 /.vscode
-__pycache__
+requirements.txt
