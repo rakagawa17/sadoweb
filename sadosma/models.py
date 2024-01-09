@@ -14,7 +14,8 @@ class Trivia(models.Model):
     category = models.CharField(max_length=15)
     url1 = models.CharField(max_length=255)
     url2 = models.CharField(max_length=255, null=True, blank=True)
-    address = models.CharField(max_length=1023, null=True, blank=True)
+    address1 = models.CharField(max_length=1023, null=True, blank=True)
+    address2 = models.CharField(max_length=1023, null=True, blank=True)
 
     def __str__(self):
         return self.japanese
