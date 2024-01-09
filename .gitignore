@@ -7,5 +7,3 @@ config/local_settings.py
 *~
 /.vscode
 __pycache__
-db.sqlite3
-.DS_Store
