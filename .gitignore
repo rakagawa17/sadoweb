@@ -1,3 +1,9 @@
 sadotrivia2.xlsx
 excel.py
-config/
+config/__pycache__
+sadosma/__pycache__
+config/local_settings.py
+*.pyc
+*~
+/.vscode
+__pycache__
