@@ -35,9 +35,14 @@
             <h5 class="card-subtitle mt-3">Category</h5>
             <p class="card-text">{{ object.category }}</p>
                     
-            {% if object.address %}
+            {% if object.address1 %}
                 <h5 class="card-subtitle">Map</h5>
-                <iframe src="{{ object.address }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="{{ object.address1 }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {% endif %}
+
+            {% if object.address2 %}
+                <h5 class="card-subtitle">Map</h5>
+                <iframe src="{{ object.address2 }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             {% endif %}
             
             <h5 class="card-subtitle mt-3">Reference</h5>
