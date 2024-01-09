@@ -3,6 +3,7 @@ excel.py
 config/__pycache__
 sadosma/__pycache__
 config/local_settings.py
+sadosma/migrations/__pycache__
 *.pyc
 *~
 /.vscode
