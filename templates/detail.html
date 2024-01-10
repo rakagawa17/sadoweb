@@ -1,31 +1,52 @@
 {% extends "base.html" %}
 
-{% block title %}詳細{% endblock %}
+{% block title %}{{object.japanese}}{% endblock %}
 
 {% block content %}
 <div class="container my-3">
     <div class="card my-3">
         <div class="card-body">
             {% if japanese %}
-                <h5 class="card-title">{{ object.japanese }}</h5>
+                <h4 class="card-title">{{ object.japanese }}</h4>
             {% elif english %}
-                <h5 class="card-title">{{ object.english }}</h5>
+                <h4 class="card-title">{{ object.english }}</h4>
             {% elif chinese1 %}
-                <h5 class="card-title">{{ object.chinese1 }}</h5>
+                <h4 class="card-title">{{ object.chinese1 }}</h4>
             {% elif chinese2 %}
-                <h5 class="card-title">{{ object.chinese2 }}</h5>
+                <h4 class="card-title">{{ object.chinese2 }}</h4>
             {% elif korean %}
-                <h5 class="card-title">{{ object.korean }}</h5>
+                <h4 class="card-title">{{ object.korean }}</h4>
             {% elif mongolian %}
-                <h5 class="card-title">{{ object.mongolian }}</h5>
+                <h4 class="card-title">{{ object.mongolian }}</h4>
             {% endif %}
-                <p class="card-text">{{ object.category }}</p>
-            
-            {% if object.address %}
-                <iframe src="{{ object.address }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <form class="form-group-sm" action="{% url 'sadosma:detail' object.id %}" method="GET">
+                <div class="row">
+                    <select class="col form-select" name="lang" style="max-width: 200px;">
+                        <option value="1" {% if japanese %}selected{% endif %}>Japanese (日本語)</option>
+                        <option value="2" {% if english %}selected{% endif %}>English (英語)</option>
+                        <option value="3" {% if chinese1 %}selected{% endif %}>Simplified Chinese (簡体字中国語)</option>
+                        <option value="4" {% if chinese2 %}selected{% endif %}>Traditional Chinese (繁体字中国語)</option>
+                        <option value="5" {% if korean %}selected{% endif %}>Korean (韓国語)</option>
+                        <option value="6" {% if mongolian %}selected{% endif %}>Mongolian (モンゴル語)</option>
+                    </select>
+                    <button class="col btn btn-secondary" style="max-width: 80px;">Submit</button>
+                </div>
+            </form>
+            <h5 class="card-subtitle mt-3">Category</h5>
+            <p class="card-text">{{ object.category }}</p>
+                    
+            {% if object.address1 %}
+                <h5 class="card-subtitle">Map</h5>
+                <iframe src="{{ object.address1 }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             {% endif %}
 
-                <p class="card-text">{{ object.url1|urlize }}</p>
+            {% if object.address2 %}
+                <h5 class="card-subtitle">Map</h5>
+                <iframe src="{{ object.address2 }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {% endif %}
+            
+            <h5 class="card-subtitle mt-3">Reference</h5>
+            <p class="card-text">{{ object.url1|urlize }}</p>
             {% if object.url2 %}
                 <p class="card-text">{{ object.url2|urlize }}</p>
             {% endif %}
