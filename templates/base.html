@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'images/icon/icon.png' %}">
 </head>
 <body class="bg-light">
     {% block content %}
