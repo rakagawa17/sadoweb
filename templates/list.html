@@ -5,9 +5,57 @@
 
 
 {% block content %}
-<div class="container my-3">
+{% load static %}
+<style>
+    .carousel-container {
+        position: relative;
+    }
+    
+    .fixed-text {
+        position: absolute;
+        top: 20%;  /* 位置を調整 */
+        left: 40%; /* 位置を調整 */
+        transform: translate(-50%, -50%);
+        z-index: 10; /* カルーセルの上に表示 */
+    }
+    
+</style>
 
-    <h2 class="text-center mb-3">サドリビア</h2>
+<div class="carousel-container">
+    <div id="carouselExampleIndicators" class="carousel slide mb-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/background/background1.jpg' %}" class="d-block w-100 h-50" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/background/background2.jpg' %}" class="d-block w-100 h-50" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/background/background3.jpg' %}" class="d-block w-100 h-50" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="fixed-text">
+        <h5><img src=""><img src="{% static 'images/title/title_ver2.png' %}" width="30%" height="30%"></h5>
+    </div>
+</div>
+
+
+
+<div class="container my-3">
 
     <form action="{% url 'sadosma:list' %}" method="GET" class="w-75 mx-auto">
         <p class="form-floating">
